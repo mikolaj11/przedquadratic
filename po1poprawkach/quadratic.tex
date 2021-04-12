@@ -2,7 +2,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[polish, english]{babel}
-\usepackage[backend=bibtex, style=alphabetic]{biblatex}
+\usepackage[backend=bibtex, style=alphabetic, doi=false]{biblatex}
 \usepackage{tikz}
 \usetikzlibrary{calc}
 \usepackage{pgfplots}
@@ -15,7 +15,7 @@
 
 \bibliography{quadratic.bib}
 
-\linespread{1.4}
+%\linespread{1.3}
 
 \newtheorem{thm}{Theorem}
 \newtheorem{theorem}{Theorem}
@@ -113,7 +113,7 @@
 			\prosto{b}{c}{black}
 			\prosto{c}{d}{black}
 			\prosto{d}{a}{black}
-			\prawolewo{c}{d}{90}{blue}
+			\prawolewo{$(c)+(-0.07,0.07)$}{d}{90}{blue}
 			\wierzcholek{a}{black}{b_2}{gora}
 			\wierzcholek{c}{black}{b_1}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
@@ -857,16 +857,17 @@ surface. Each face of such a graph has some
 number of edges ordered cyclically by going 
 along the boundary of the face  and touching 
 it with the right hand. We will call it 
-clockwise direction. If we use the left hand 
+\emph{clockwise direction}. If we use the left hand 
 and visit the edges in the opposite order, we 
-will call it counterclockwise direction. 
+will call it {counterclockwise direction}. 
 
 By \emph{a map} we mean a bipartite 
 graph drawn without intersections on an oriented 
 and connected surface with minimal genus. The maps 
-which we consider are \emph{bicolored}, i.e., each 
+which we consider have fixed a choice of colouring 
+the vertices. , i.e., each 
 vertex is coloured black or white, with the edges
-connecting the vertices of the opposite colors. 
+connecting the vertices of the opposite colours. 
 An example of a map is shown in \cref{fig:mapa}.
 
 \begin{figure}[H]
@@ -910,8 +911,8 @@ Using the Euler characteristic we get
 2-2g=\chi=V-k+1
 \end{align}
 where $g$ denotes the genus of the surface, 
-$V$ denotes the number of the vertices and 
-$k$ denotes the number of the edges.
+$V$ denotes the number of vertices and $k$ 
+denotes the number of edges.
 
 \subsection{Combinatorial interpretation of 
 the Kerov polynomial coefficients}
@@ -946,19 +947,20 @@ vertex has a weight $l-1$. More precisely:
 
 \begin{itemize}
 
-\item On the edges are all the 
-numbers $1, 2, \dots, k$.
+\item The edges are numbered $1, 2, \dots, k$.
 The edge with number $1$ is selected as the root.
 
-\item The clockwise angular order of the edges on 
-a given vertex correspond to a cycle of a permutation
-depending on from the color of this vertex, i.e. 
+\item \emph{The clockwise angular order of the 
+edges on a given vertex} (i.e. order of edges 
+ending at this vertex around it) correspond to 
+a cycle of a permutation
+depending on the colour of this vertex, i.e. 
 $\sigma_1$ for white and $\sigma_2$ for black
 (in this case we have unique cycle of 
 the permutation $\sigma_2$). 
 
-\item Unique face correspond to unique cycle of 
-the permutation $(1, 2, \ldots, k)$.
+\item The unique face corresponds to the unique 
+cycle of the permutation $(1, 2, \ldots, k)$.
 
 \end{itemize}
 Since there is only one face, the root determines the 
@@ -970,7 +972,7 @@ coefficient $[R_l] K_k$ is equal to the number
 of expanders with $k$ edges, $l-1$ white vertices 
 and $1$ black vertex with the weight $l-1$.
 \end{theorem}
-”Similarly we the use the second theorem for square coefficients.
+Similarly we use the second theorem for square coefficients.
 \begin{theorem}
 \label{thm3}
 For all integers $l_1, l_2\geq 2$ and $k\geq 1$ 
@@ -987,7 +989,8 @@ $\sigma_2$ consists of $l_1+l_2-2$ cycles.
 
 \item The function $q$ associates the numbers 
 $l_1$ and $l_2$ to the cycles of $\sigma_2$ 
-such that the cycle with number $l$ there are 
+such that for a cycle of $\sigma_2$ with number 
+$l$ exist 
 at least $l$ cycles of $\sigma_1$ which 
 intersect nontrivially this cycle.
 \end{itemize}
@@ -1073,9 +1076,9 @@ for any natural number $k$.
 These inequalities are equivalent to the 
 positivity of the coefficients $[C_j^2] L_k$ 
 and $[C_i C_j] L_k$ respectively. 
-In this text we prove only first inequality  
-in the special case 
-$j=2$. We would like to present
+In this text we prove only the first 
+inequality  in the special case 
+$j=2$. We hope to present
 a proof of \cref{con:GJ2} in its general 
 form in a future paper.
 
@@ -1090,7 +1093,7 @@ the Goulden--Rattan polynomials
 [C_2^2] L_7 &=224-\frac{1}{3} \cdot 469=\frac{203}{3}, \\
 [C_2^2] L_8 &=0-0=0. 
 \end{align*}
-Note that if $k$ is even then $[C_2^2] L_k=0$ because there does not exist an expander with $4$ vertices and an odd number of edges, since
+Note that if $k$ is even then $[C_2^2] L_k=0$ because there does not exist an expander with $4$ vertices and an even number of edges, since
 $2-2g=2j-k+1$ by \cref{euler}. Thus we can assume that the number of edges $k$ is odd and $k \geq 5$. 
 
 Let 
@@ -1124,7 +1127,7 @@ is true for any natural number $k$.
 \section{Maps, Expanders, and edge sliding}
 
 In this section we provide some necessary 
-background details for the proof of \cref{mainthm}.
+background details for the proof of \cref{mainthm2}.
 
 \subsection{Edge sliding}
 
@@ -1247,13 +1250,13 @@ counterclockwise angular order.
 \end{itemize}  
 Moreover, the output of the edge sliding
 has opposite assignments of directions to
-both ends of the each special edge.
+both ends of each special edge.
 
 The edge sliding is a bijection from the 
-set of graph drawn on an oriented and 
+set of graphs drawn on an oriented and 
 connected surface with a selected set of 
-special edges and a correct directions 
-assignment to itself. Edge sliding is an 
+special edges which satisfy the edge sliding 
+conditions to itself. Edge sliding is an 
 invertible transformation, with the inverse 
 also given by edge sliding. 
 
@@ -1337,15 +1340,16 @@ odd degree white vertex (let us say it
 is $w_3$) which has the other two white
 vertices as \successors, i.e., 
 $w_3\rightarrow w_1$ and 
-$w_3\rightarrow w_2$. Let $T_k^{\odd}$ 
-be the set of all maps from the set
-$Y_k^{\odd}$ with a distinguished 
-vertex $w_3$ with this property and a 
-fixed the set of the edges of the 
-vertex $w_3$ as the set of special edges, 
-the edge ends at vertex $w_3$ have not assigned 
-the direction and the edge ends at vertex 
-$b$ have assigned the clockwise direction. 
+$w_3\rightarrow w_2$. 
+Let $T_k^{\odd}$ be the set of all 
+maps from the set $Y_k^{\odd}$ with a 
+distinguished vertex $w_3$ with this 
+property and a fixed set of edges of 
+the vertex $w_3$ as the set of special 
+edges, such that the edge ends at the 
+vertex $w_3$ have no assigned direction, 
+and the edge ends at the vertex $b$ have 
+assigned clockwise direction.
 The unique (up to choice of the root) 
 map from the set $T_{5}^{\odd}$ is 
 shown in \cref{fig:rysallb}. Clearly
@@ -1362,15 +1366,15 @@ the other two white vertices as
 \successors, i.e., 
 $w_3\rightarrow w_1$ and 
 $w_3\rightarrow w_2$. 
-Let $T_k^{\even}$ be the set of all 
+Let $T_k^{\even}$ be the set of all  
 the maps from the set $Y_k^{\even}$ 
-with a distinguished 
-vertex $w_3$ with this property and a 
-fixed the set of the edges of the 
-vertex $w_3$ as the set of special edges, 
-the edge ends at vertex $w_3$ have not assigned
-the direction and the edge ends at vertex 
-$b$ have assigned the clockwise direction. 
+with a distinguished vertex $w_3$ with 
+this property and a fixed set of edges 
+of the vertex $w_3$ as the set of special 
+edges, such that the edge ends at the 
+vertex $w_3$ have no assigned direction, 
+and the edge ends at the vertex $b$ have 
+assigned clockwise direction. 
 The unique (up to choice of 
 the root) map from the set $T_{5}^{\even}$ 
 is shown in \cref{fig:rysallc}. Clearly
@@ -1424,14 +1428,14 @@ the vertex $w_2$. Note that $\nast^2$
 is a permutation of the corners of 
 the white vertices which has only one 
 cycle. The corners of the white vertices 
-”can be labelled 1, 2, 3 according to 
+can be labelled 1, 2, 3 according to 
 the names of the vertices 
 they are in. If a corner $c$ has the 
 label $a$, its \successor $\nast^2(c)$ 
-has either the color $a$ or 
+has either the label $a$ or 
 $1+a \operatorname{mod} 3$. 
 There is only one corner which has the 
-color $1$, so the corner colors 
+label $1$, so the corner labels 
 (arranged in the cyclic order according 
 to the unique cycle of $\nast^2$) are 
 $(1, 2, \ldots, 2, 3, \ldots, 3)$. Since 
@@ -1467,7 +1471,7 @@ map $m$ has a white vertex with an odd
 degree greater than $1$.
 \end{proof}
 
-”We now fix as special the set of edges between 
+We now fix as special the set of edges between 
 the vertices $b$ and $w_3$.
 Furthermore the ends of special edges in the
 vertex $w_3$ have no assigned direction. 
@@ -1512,7 +1516,7 @@ at the vertex $b_1$ have no assigned direction
 and the other ends have assigned
 the direction counterclockwise. We apply the 
 edge sliding on the map $m$. Then we change 
-the color of the black vertex $b_1$ to white 
+the colour of the black vertex $b_1$ to white 
 and its name to $w_3$, and the name of the vertex
 $b_2$ to $b$. Of course, the degree of the vertex
 $w_3$ does not change and is odd. In addition, 
@@ -1559,12 +1563,12 @@ at the vertex $b_2$ have no assigned direction
 and the other ends have assigned
 the direction counterclockwise. We apply the 
 edge sliding on the map $m$. Then we change 
-the color of the black vertex $b_2$ to white 
+the colour of the black vertex $b_2$ to white 
 and its name to $w_3$, and the name of the vertex
 $b_1$ to $b$. Of course, the degree of the vertex
 $w_3$ does not change and is even. In addition, 
 $w_3\rightarrow w_1$ and $w_3\rightarrow w_2$,
-becouse any map from the set $X_{k}$ has at 
+because any map from the set $X_{k}$ has at 
 least one edge between each pair of the vertices 
 of different colours. We obtain a map from the 
 set $T_{k}^{\even}$. (At all times one of the edges 
@@ -1594,22 +1598,23 @@ We start from a map $m \in X_{k}$. As the set of
 special edges we select all edges of
 the vertex $b_1$. Recall that we have assumed 
 $\degg(b_1)$ is odd. The ends of the special edges 
-at the vertex $b_1$ have no assigned direction
-and the ends at the vertex $w_1$ have assigned
+at the vertex $b_1$ have no assigned direction,
+the ends at the vertex $w_1$ have assigned
 the direction counterclockwise and at the vertex 
 $w_2$ have the direction clockwise. We apply the 
 edge sliding on the map $m$. Then we change 
-the color of the black vertex $b_1$ to white 
+the colour of the black vertex $b_1$ to white 
 and its name to $w_3$, and the name of the vertex
 $b_2$ to $b$. Of course, the degree of the vertex
 $w_3$ does not change and is odd. In addition, 
 $w_3\rightarrow w_1$ and $w_2\rightarrow w_3$,
-becouse any map from the set $X_{k}$ has at 
+because any map from the set $X_{k}$ has at 
 least one edge between each pair of the vertices 
 of different colours. We do not necessarily obtain 
-a map from the set $T_{k}^{\odd}$, but it can be 
-seen that each map from the set can be produced.
-(At all times one of the edges 
+a map from the set $T_{k}^{\rest}$ (it may be that 
+we obtain a map from set $T_{k}^{\odd}$), but it can 
+be seen that each map from the set $T_{k}^{\rest}$ 
+can be produced. (At all times one of the edges 
 is selected as the root.)
 Such a transformation is a bijection between the 
 set $X_k$ and some superset of the set $T_k^{\odd}$,
@@ -1653,7 +1658,9 @@ I would like to thank my supervisor, Professor Piotr
 Śniady, for his support, understanding, patience, 
 positive outlook, guidance, valuable advice, and 
 useful and constructive recommendations during
-writing this article.
+writing this article. I would like to thank also 
+to doctor Stephen Moore for the help with the 
+text editing.
 
 \printbibliography 
 
